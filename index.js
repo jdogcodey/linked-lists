@@ -8,7 +8,7 @@ class LinkedList {
       this.head = new Node(value);
       return this;
     } else {
-      this.tail().next = new Node(value);
+      this.tail().nextNode = new Node(value);
       return this;
     }
   }
@@ -27,22 +27,59 @@ class LinkedList {
   size() {
     let noOfNodes = 0;
     let currentNode = this.head;
-    while (currentNode != null) {
+    while (currentNode !== null) {
       noOfNodes++;
-      currentNode = currentNode.next;
+      currentNode = currentNode.nextNode;
     }
     return noOfNodes;
   }
 
-  head() {}
+  head() {
+    return this.head;
+  }
 
-  tail() {}
+  tail() {
+    let currentNode = this.head;
+    while (currentNode.nextNode !== null) {
+      currentNode = currentNode.nextNode;
+    }
+    return currentNode;
+  }
 
-  at(index) {}
+  at(index) {
+    let nodeCount = this.head;
+    for (let i = 0; i < index; i++) {
+      nodeCount = nodeCount.nextNode;
+    }
+    if (nodeCount === null) {
+      return null;
+    } else {
+      return nodeCount;
+    }
+  }
 
-  pop() {}
+  pop() {
+    let currentNode = this.head;
+    if (!this.head.nextNode) {
+      this.head = null;
+      return;
+    }
+    while (currentNode.nextNode !== null) {
+      currentNode = currentNode.nextNode;
+    }
+    currentNode = null;
+  }
 
-  contains(value) {}
+  contains(value) {
+    let currentNode = this.head;
+    while (currentNode !== null) {
+      if (value === currentNode.value) {
+        return true;
+      }
+      currentNode = currentNode.nextNode;
+    }
+    return false;
+  }
 
   find(value) {}
 
