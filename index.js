@@ -8,7 +8,7 @@ class LinkedList {
       this.head = new Node(value);
       return this;
     } else {
-      this.tail().nextNode = new Node(value);
+      this.getTail().nextNode = new Node(value);
       return this;
     }
   }
@@ -34,11 +34,11 @@ class LinkedList {
     return noOfNodes;
   }
 
-  head() {
+  getHead() {
     return this.head;
   }
 
-  tail() {
+  getTail() {
     let currentNode = this.head;
     while (currentNode.nextNode !== null) {
       currentNode = currentNode.nextNode;
@@ -64,10 +64,10 @@ class LinkedList {
       this.head = null;
       return;
     }
-    while (currentNode.nextNode !== null) {
+    while (currentNode.nextNode.nextNode !== null) {
       currentNode = currentNode.nextNode;
     }
-    currentNode = null;
+    currentNode.nextNode = null;
   }
 
   contains(value) {
@@ -97,6 +97,9 @@ class LinkedList {
 
   toString() {
     let currentNode = this.head;
+    if (currentNode === null) {
+      return null;
+    }
     let output = `( ${currentNode.value} )`;
     while (currentNode.nextNode !== null) {
       currentNode = currentNode.nextNode;
@@ -114,3 +117,21 @@ class Node {
     this.nextNode = nextNode;
   }
 }
+
+const test = new LinkedList();
+console.log(test.append(1));
+console.log(test.append(2));
+console.log(test.append(3));
+console.log(test.append(4));
+console.log(test.prepend(5));
+console.log(test.prepend(6));
+console.log(test.size());
+console.log(test.getHead());
+console.log(test.getTail());
+console.log(test.at(3));
+console.log(test.pop());
+console.log(test.contains(4));
+console.log(test.find(4));
+console.log(test.contains(2));
+console.log(test.find(2));
+console.log(test.toString());
