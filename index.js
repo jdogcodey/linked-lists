@@ -81,9 +81,30 @@ class LinkedList {
     return false;
   }
 
-  find(value) {}
+  find(value) {
+    let currentNode = this.head;
+    let nodeCount = 0;
+    while (currentNode !== null) {
+      if (value === currentNode.value) {
+        return nodeCount;
+      } else {
+        nodeCount++;
+        currentNode = currentNode.nextNode;
+      }
+    }
+    return null;
+  }
 
-  toString() {}
+  toString() {
+    let currentNode = this.head;
+    let output = `( ${currentNode.value} )`;
+    while (currentNode.nextNode !== null) {
+      currentNode = currentNode.nextNode;
+      output = `${output} -> ( ${currentNode.value} )`;
+    }
+    output = `${output} -> null`;
+    return output;
+  }
 }
 
 // Class to make Nodes
