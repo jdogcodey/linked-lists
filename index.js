@@ -49,7 +49,11 @@ class LinkedList {
   at(index) {
     let nodeCount = this.head;
     for (let i = 0; i < index; i++) {
-      nodeCount = nodeCount.nextNode;
+      if (nodeCount.nextNode === null) {
+        break;
+      } else {
+        nodeCount = nodeCount.nextNode;
+      }
     }
     if (nodeCount === null) {
       return null;
@@ -110,8 +114,15 @@ class LinkedList {
   }
 
   removeAt(index) {
-    if (this.at(index).nextNode === null) {
+    if (this.at(index) === null) {
+      return false;
+    } else if (this.at(index).nextNode === null) {
       this.pop();
+      return true;
+    } else {
+      const currentNextNode = this.at(index).nextNode;
+      this.at(index - 1).nextNode = currentNextNode;
+      return true;
     }
   }
 }
@@ -142,6 +153,5 @@ console.log(test.prepend(6));
 // console.log(test.find(2));
 // console.log(test.toString());
 console.log(test.toString());
-console.log(test.removeAt(5));
-console.log(test.removeAt(4));
+console.log(test.removeAt(7));
 console.log(test.toString());
