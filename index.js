@@ -108,6 +108,12 @@ class LinkedList {
     output = `${output} -> null`;
     return output;
   }
+
+  removeAt(index) {
+    if (this.at(index).nextNode === null) {
+      this.pop();
+    }
+  }
 }
 
 // Class to make Nodes
@@ -125,13 +131,17 @@ console.log(test.append(3));
 console.log(test.append(4));
 console.log(test.prepend(5));
 console.log(test.prepend(6));
-console.log(test.size());
-console.log(test.getHead());
-console.log(test.getTail());
-console.log(test.at(3));
-console.log(test.pop());
-console.log(test.contains(4));
-console.log(test.find(4));
-console.log(test.contains(2));
-console.log(test.find(2));
+// console.log(test.size());
+// console.log(test.getHead());
+// console.log(test.getTail());
+// console.log(test.at(3));
+// console.log(test.pop());
+// console.log(test.contains(4));
+// console.log(test.find(4));
+// console.log(test.contains(2));
+// console.log(test.find(2));
+// console.log(test.toString());
+console.log(test.toString());
+console.log(test.removeAt(5));
+console.log(test.removeAt(4));
 console.log(test.toString());
